@@ -34,61 +34,11 @@ def optimize_dtypes(df: pd.DataFrame) -> None:
             new_type = np.min_scalar_type(max_value)
             df[column] = df[column].astype(new_type)
 
-        elif:
-
-
-
-
-
-
-
-        elif
-        'string'
-        'bytes'
-        ''
-        'mixed-integer'
-
-        'decimal'
-        'complex'
-        'categorical'
-        'boolean'
-        'datetime64'
-        'datetime'
-        'date'
-        'timedelta64'
-        'timedelta'
-        'time'
-        'period'
-        'mixed'
-        'unknown-array'
-
-
-
-         = df.dtypes[column]
-
-        if column_type == 'object':
+        elif column_type == 'string':
             n_items = len(df)
             n_unique = df[column].nunique(dropna=True)
 
-            if n_unique/n_items < 0.05:
+            if n_unique / n_items < 0.1:
                 df[column] = df[column].astype('category')
-
-        elif column_type == 'float' or column_type == 'int':
-            has_negative_values = np.any(df[column] < 0)
-            has_nans = 0 < df[column].isnull().sum()
-            max_value = df[column].abs().max()
-
-            if column_type == 'float' or has_nans:
-                multiplier = 1.99
-            else:
-                multiplier = 2
-
-            if has_negative_values:
-                new_type = np.min_scalar_type(-multiplier*max_value)
-            else:
-                new_type = np.min_scalar_type(multiplier*max_value)
-
-            if new_type < column_type:
-                df[column] = df[column].astype(new_type)
         else:
-            pass
+            ...

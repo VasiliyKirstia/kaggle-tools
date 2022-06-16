@@ -22,7 +22,7 @@ class NumericalDataTransformer:
         def style_applier(styler: Styler):
             template = f'{{:.{precision}f}}'
             if truncate_leading_zero:
-                def formatter(v): template.format(v).lstrip('0')
+                def formatter(v): return template.format(v).lstrip('0')
             else:
                 formatter = template
 

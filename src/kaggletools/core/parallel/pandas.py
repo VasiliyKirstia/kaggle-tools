@@ -24,7 +24,7 @@ def parallel_apply(
         split_values = df[split_column].unique()
 
         if batch_size is None:
-            batch_size = split_values // n_jobs
+            batch_size = len(split_values) // n_jobs
 
         batches = []
         for start in range(0, len(split_values), batch_size):
